@@ -1,1 +1,10 @@
+<h1> Users Show Page </h1>
 
+
+links to 
+all of the post a user has commented on 
+
+<% @user.posts.each do |post| %>
+    <%= link_to post.title, post_path(post) %>
+
+<% end %>

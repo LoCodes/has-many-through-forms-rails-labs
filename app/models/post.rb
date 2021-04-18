@@ -5,4 +5,16 @@ class Post < ActiveRecord::Base
   has_many :users, through: :comments
 
 
-end
+  def categories_attributes=(categories_attributes)
+    #binding.pry -> got .values from ^ and binding.pry
+    categories_attributes.values.each do |category| 
+      #binding.pry -> categories_attribute => {"name"=>"Sample"}
+
+      if !category[:name].empty? #or .present?
+        self.categories << Category.find_or_create_by(name: category[:name])
+      end 
+    end 
+  end 
+end 
+     
+
